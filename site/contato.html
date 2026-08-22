@@ -88,7 +88,8 @@
         </div>
       </div>
 
-      <form class="form-card" id="contact-form" novalidate>
+
+      <form class="form-card" id="contact-form" action="https://formspree.io/f/xqpzjbzw" method="POST">
         <div class="field">
           <label for="nome">Nome</label>
           <input type="text" id="nome" name="nome" required>
@@ -111,6 +112,8 @@
           <label for="mensagem">Mensagem</label>
           <textarea id="mensagem" name="mensagem" required></textarea>
         </div>
+        <!-- Campo armadilha invisível: se for preenchido, é robô/spam -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
         <button class="btn btn-primary" type="submit">Enviar mensagem</button>
         <p class="form-note" id="form-feedback" role="status" tabindex="-1" hidden style="margin-top:14px;"></p>
       </form>

@@ -1,8 +1,3 @@
-/* =========================================================
-   Guardiã — site institucional sobre o Conselho Tutelar e o ECA
-   Paleta alinhada à identidade visual do Conselho Tutelar de Nova Cantu.
-   ========================================================= */
-
 :root {
   --color-bg: #FBFAF6;
   --color-bg-alt: #F1EFE7;
@@ -69,8 +64,6 @@ body {
   position: relative;
 }
 
-/* Textura de grão sutil no fundo — dá uma sensação mais tátil/impressa
-   em vez do gradiente digital "liso" típico de templates genéricos. */
 body::before {
   content: "";
   position: fixed;

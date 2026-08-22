@@ -92,18 +92,44 @@ document.addEventListener('DOMContentLoaded', () => {
     statNums.forEach((el) => statObserver.observe(el));
   }
 
-  // Formulário de contato (front-end apenas — sem backend neste protótipo)
+  // Formulário de contato — envio real via Formspree (ver contato.html para configurar o ID)
   const form = document.querySelector('#contact-form');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const feedback = document.querySelector('#form-feedback');
-      if (feedback) {
-        feedback.hidden = false;
-        feedback.textContent = 'Mensagem registrada. Em uma versão com back-end, ela seria enviada à equipe responsável.';
-        feedback.focus();
+      const button = form.querySelector('button[type=submit]');
+      const showFeedback = (msg) => {
+        if (feedback) {
+          feedback.hidden = false;
+          feedback.textContent = msg;
+          feedback.focus();
+        }
+      };
+
+      if (form.action.includes('SEU_ID_AQUI')) {
+        showFeedback('Formulário ainda não configurado: defina o ID do Formspree em contato.html.');
+        return;
       }
-      form.reset();
+
+      if (button) button.disabled = true;
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (response.ok) {
+          showFeedback('Mensagem enviada com sucesso! Em breve entraremos em contato.');
+          form.reset();
+        } else {
+          showFeedback('Não foi possível enviar agora. Tente novamente em instantes ou use os contatos ao lado.');
+        }
+      } catch (err) {
+        showFeedback('Não foi possível enviar agora. Verifique sua conexão e tente novamente.');
+      } finally {
+        if (button) button.disabled = false;
+      }
     });
   }
 });

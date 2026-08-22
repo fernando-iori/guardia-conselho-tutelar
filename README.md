@@ -34,13 +34,7 @@ site/
 
 ## Como visualizar localmente
 
-Não é necessário nenhum servidor ou build — basta abrir o arquivo `site/index.html` diretamente no navegador, ou servir a pasta `site/` com qualquer servidor estático:
-
-```bash
-cd site
-python3 -m http.server 8000
-# depois acesse http://localhost:8000
-```
+Abra o arquivo site/index.html diretamente no navegador.
 
 ## Sobre o projeto de extensão
 
